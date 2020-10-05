@@ -13,12 +13,11 @@ export const ModalButtonInvest = ({
 }) => {
  const url = "http://traidy-game.com/users/setInvest";
  const { refreshing } = React.useContext(AuthContext); //post data on server
- console.log(item);
+
  const pressHandleData = () => {
   //reqvest on server
   if (state.invested) {
-   //modall window
-
+   //modall  window
    Alert.alert(
     "Сonfirm rate?",
     `Invest: ${state.invested}, Name: ${item.nameInvest}`,
