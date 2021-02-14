@@ -25,7 +25,7 @@ export const CurrencyCurrent = ({ item, trId, navigation }) => {
       >
         <FontAwesome name={item.iconsName} size={24} color="black" />
         <Text>{item.nameInvest}</Text>
-        <Text style={styles.text}>Touch to bet</Text>
+        <Text style={styles.text}>Tap to invest</Text>
         <Image
           style={styles.img}
           source={require("../../../assets/img/ellipse-bets.png")}

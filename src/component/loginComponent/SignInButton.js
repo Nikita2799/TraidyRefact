@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   Text,
   Alert,
-  AsyncStorage,
 } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from "axios";
 import { AuthContext } from "../../context";
 
@@ -15,13 +15,6 @@ export const SignInButton = ({ loginData, navigation }) => {
 
   const { signIn } = React.useContext(AuthContext);
 
-  const setId = async (data) => {
-    try {
-      await AsyncStorage.setItem("trId", data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const loginPost = () => {
     if (loginData.login.lenght === 0) {
       Alert.alert("Login mast have min 5 charters");
@@ -38,9 +31,10 @@ export const SignInButton = ({ loginData, navigation }) => {
         login: loginData.login,
         password: loginData.password,
       })
-      .then(({ data }) => {
-        if (data.success === 0) {
-          setId(data.traidy_id);
+      .then(async ( data ) => {
+        if (data.data.success === 0) {
+          console.log('sdasd');
+          await AsyncStorage.setItem("trId", data.data.traidy_id);
           signIn();
         } else {
           Alert.alert("Incorrect login or password ");

@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, Alert, TouchableOpacity } from "react-native";
 import axios from "axios";
 import { BalanceContext, AuthContext } from "../../../context";
+import numbro from "numbro";
 
 export const ModalButtonInvest = ({
  trId,
@@ -18,9 +19,13 @@ export const ModalButtonInvest = ({
   //reqvest on server
   if (state.invested) {
    //modall  window
+   let investStr = numbro(state.invested).format({
+     mantissa: 2,
+     thousandSeparated: true
+   })
    Alert.alert(
-    "Сonfirm rate?",
-    `Invest: ${state.invested}, Name: ${item.nameInvest}`,
+    "Сonfirm?",
+    `Invest: ${investStr}, Asset: ${item.nameInvest}`,
     [
      {
       text: "Cancel",
@@ -34,9 +39,8 @@ export const ModalButtonInvest = ({
        axios
         .post(url, {
          trId: trId,
-         name: item.nameInvest,
-         amount: state.invested,
-         rate: state.rate,
+         cur: item.nameInvest,
+         invest: state.invested,
          //nameCode: item.name,
         })
         .then(({ data }) => {

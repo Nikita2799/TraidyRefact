@@ -11,18 +11,7 @@ import {
 
 export const BlockBet = ({ trId, navigation }) => {
  const fadeAnim = React.useRef(new Animated.Value(0)).current;
- const pan = React.useRef(new Animated.ValueXY()).current;
-
- const panResponder = PanResponder.create({
-  onStartShouldSetPanResponder: () => true,
-  onPanResponderMove: Animated.event([
-   null,
-   {
-    dx: pan.x,
-    dy: pan.y,
-   },
-  ]),
- });
+ //const pan = React.useRef(new Animated.ValueXY()).current;
 
  React.useEffect(() => {
   Animated.timing(fadeAnim, {
@@ -31,12 +20,15 @@ export const BlockBet = ({ trId, navigation }) => {
    delay: 300,
    useNativeDriver: true,
   }).start();
+  return ()=>{
+      Animated.timing(fadeAnim).stop()
+  }
  }, []);
 
  return (
   <Animated.View style={[styles.blockButtonContainer, { opacity: fadeAnim }]}>
    <TouchableOpacity
-    onPress={() => navigation.push("Crypto", { trId: trId, bet: "crypto" })}
+    onPress={() => navigation.popToTop("Crypto", { trId: trId, bet: "crypto" })}
     style={styles.blockButton}
    >
     <Text style={styles.textButton}>Crypto</Text>
@@ -49,7 +41,7 @@ export const BlockBet = ({ trId, navigation }) => {
     <Text style={styles.textButton}>Resources</Text>
    </TouchableOpacity>
    <TouchableOpacity
-    onPress={() => navigation.push("Currency", { trId: trId, bet: "currency" })}
+    onPress={() => navigation.popToTop("Currency", { trId: trId, bet: "currency" })}
     style={styles.blockButton}
    >
     <Text style={styles.textButton}>Currency</Text>
@@ -67,11 +59,11 @@ export const BlockBet = ({ trId, navigation }) => {
 const styles = StyleSheet.create({
  blockButtonContainer: {
   marginVertical: 40,
-  width: "100%",
   height: "55%",
   flexDirection: "row",
   flexWrap: "wrap-reverse",
   justifyContent: "center",
+  width: "100%",
   alignItems: "flex-end",
  },
  blockButton: {

@@ -25,9 +25,13 @@ const BottomNavigator = createBottomTabNavigator(
   {
     Bets: {
       screen: BetsStack,
+      initial: true
     },
     MyBets: {
       screen: MyBetsScreen,
+      navigationOptions:{
+        title:'My Invets'
+      }
     },
   },
   {

@@ -103,7 +103,6 @@ export const MainHeader = ({ trId, refresh }) => {
   <View style={styles.headerContainer}>
    <View style={styles.imgEllipse}>
     <Image source={require("../../../assets/img/ellipse-left.png")} />
-    <Text style={styles.wallet}>Wallet</Text>
 
     <Image source={require("../../../assets/img/ellipse-right.png")} />
    </View>
@@ -114,7 +113,7 @@ export const MainHeader = ({ trId, refresh }) => {
      <Text style={styles.balance}>
       {state.balance ? state.balance : "Wait please"}
      </Text>
-     <Text style={{ color: "#0063E0" }}> TR</Text>
+     <Text style={{ color: "#0063E0" , fontSize: 20}}> TR</Text>
     </View>
 
     <Text style={styles.text}>Capitalization</Text>
@@ -129,7 +128,7 @@ export const MainHeader = ({ trId, refresh }) => {
       {state.capitalStr ? state.capitalStr : "Wait please"}
      </Text>
 
-     <Text style={{ color: "#0063E0" }}> TR</Text>
+     <Text style={{ color: "#0063E0",fontSize: 20 }}> TR</Text>
      {/*<TouchableOpacity onPress={refreshHandle} style={styles.imgButton}>
       <Image
        source={require("../../../assets/img/refresh.png")}
@@ -153,20 +152,16 @@ const styles = StyleSheet.create({
   flexDirection: "row",
   justifyContent: "space-between",
  },
- wallet: {
-  fontWeight: "normal",
-  fontSize: 20,
-  fontFamily: "open-light",
-  marginTop: 20,
- },
+ 
  mainContent: {
   alignItems: "center",
-  marginTop: 10,
  },
  balanceContainer: {
   flexDirection: "row",
   marginTop: 5,
   marginBottom: 5,
+  alignItems: 'center',
+  justifyContent:'center'
  },
  capitalContainer: {
   flexDirection: "row",

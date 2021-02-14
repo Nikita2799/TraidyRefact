@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {
  StyleSheet,
  ImageBackground,
@@ -27,6 +27,7 @@ export const MyBetsScreen = ({ navigation }) => {
    const trId = await AsyncStorage.getItem("trId");
 
    if (trId) {
+    
     axios
      .post(url, {
       trId: trId,
@@ -54,13 +55,14 @@ export const MyBetsScreen = ({ navigation }) => {
   setRefreshing(true);
   try {
    const trId = await AsyncStorage.getItem("trId");
-
+   console.log(trId);
    if (trId) {
     await axios
      .post(url, {
       trId: trId,
      })
      .then(({ data }) => {
+      console.log(data);
       setState((prev) => ({
        ...prev,
        trId: trId,

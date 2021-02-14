@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
 import { MyBetModal } from "../../ModalWindows/MyBetModal";
+import numbro from 'numbro';
 
 export const MyBet = ({ bet, trId, setState }) => {
   const [visible, setVisible] = React.useState(false);
@@ -23,7 +24,7 @@ export const MyBet = ({ bet, trId, setState }) => {
           <Text>Img {bet.nameInvest}</Text>
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.text}> {bet.invested}</Text>
+          <Text style={styles.text}>{numbro(bet.invested).format({ mantissa:2,thousandSeparated:true})}</Text>
         </View>
         <Image
           style={styles.img}

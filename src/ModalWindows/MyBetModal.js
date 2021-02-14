@@ -11,6 +11,7 @@ import {
 import { MainHeader } from "../component/header/MainHeader";
 import axios from "axios";
 import { AuthContext } from "../context";
+import numbro from "numbro";
 
 export const MyBetModal = ({ visible, bet, onBack, trId, setState }) => {
  const { refresh, refreshing } = React.useContext(AuthContext);
@@ -59,16 +60,29 @@ export const MyBetModal = ({ visible, bet, onBack, trId, setState }) => {
        })
        .catch((err) => {
         console.log(err);
-       });
+       });  
      },
     },
    ],
    { cancelable: false }
   );
+
  };
 
- let received = bet.invested * rate;
  let profit = bet.invested - (bet.invested * bet.sellPrice) / rate;
+ let sell_for_now = Number(bet.invested) + Number(profit);
+ 
+ let color= bet.invested>sell_for_now?"red":bet.invested<sell_for_now?'green':'white'
+
+ sell_for_now=numbro(sell_for_now).format({
+  mantissa:2,
+  thousandSeparated:true
+})
+
+let invested = numbro(bet.invested).format({
+  mantissa:2,
+  thousandSeparated:true
+})
 
  return (
   <Modal visible={visible}>
@@ -80,12 +94,8 @@ export const MyBetModal = ({ visible, bet, onBack, trId, setState }) => {
     <View style={styles.textContainer}>
      <Text style={styles.mainText}>Information</Text>
      <Text style={styles.text}>Asset: {bet.nameInvest}</Text>
-     <Text style={styles.text}>Invested {bet.invested} TR</Text>
-     <Text style={styles.text}>
-      Received: {received.toFixed(2)} {bet.nameInvest}
-     </Text>
-     <Text style={styles.text}>Current rate: {bet.sellPrice}</Text>
-     <Text style={styles.text}>Profit: {profit.toFixed(2)}</Text>
+     <Text style={styles.text}>Invested {invested} TR</Text>
+     <Text style={styles.text}>Sell now for: <Text style={[{color:color,marginBottom:20,fontSize:16,fontFamily:'open-regular'}]}>{sell_for_now} TR</Text></Text>
     </View>
     <View style={styles.buttonContainer}>
      <TouchableOpacity onPress={sellOne} style={styles.button}>
@@ -138,4 +148,5 @@ const styles = StyleSheet.create({
  buttonText: {
   color: "#FFFF",
  },
+ 
 });
