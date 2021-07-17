@@ -4,12 +4,10 @@ import { InvestModal } from "../../ModalWindows/InvestModal";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 export const CurrencyCurrent = ({ item, trId, navigation }) => {
   const [visible, setVisible] = React.useState(false);
-  //console.log(navigation);
 
   const pressHandler = (e) => {
     setVisible(e);
   };
-  //console.log(navigation);
   return (
     <View style={styles.content}>
       <InvestModal
@@ -23,7 +21,20 @@ export const CurrencyCurrent = ({ item, trId, navigation }) => {
         onPress={() => pressHandler(true)}
         style={styles.mainContainer}
       >
-        <FontAwesome name={item.iconsName} size={24} color="black" />
+        {item.iconsName === "chf" ? (
+          <Image
+            style={styles.imgCurrency}
+            source={require("../../../assets/img/swiss-franc.png")}
+          />
+        ) : item.iconsName === "thb" ? (
+          <Image
+            style={styles.imgCurrency}
+            source={require("../../../assets/img/thailand-baht.png")}
+          />
+        ) : (
+          <FontAwesome name={item.iconsName} size={25} color="black" />
+        )}
+
         <Text>{item.nameInvest}</Text>
         <Text style={styles.text}>Tap to invest</Text>
         <Image
@@ -67,5 +78,9 @@ const styles = StyleSheet.create({
   },
   text: {
     marginRight: 20,
+  },
+  imgCurrency: {
+    width: 20,
+    height: 20,
   },
 });

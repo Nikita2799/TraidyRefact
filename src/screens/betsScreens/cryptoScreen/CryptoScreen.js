@@ -10,22 +10,11 @@ export const CryptoScreen = ({ navigation }) => {
  const [cryptoList, setCryptoList] = React.useState([
   {
    id: 1,
-   name: "BTN",
-   nameInvest: "Bitcoin",
+   name: "Bitcoin",
+   nameInvest: "BTC",
    iconsName: "bitcoin",
   },
-  {
-   id: 2,
-   name: "",
-   nameInvest: "Ethereum",
-   iconsName: "ethereum",
-  },
-  {
-   id: 3,
-   name: "",
-   nameInvest: "Litecoin",
-   iconsName: "litecoin",
-  },
+ 
  ]);
 
  return (

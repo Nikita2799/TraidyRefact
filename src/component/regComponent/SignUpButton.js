@@ -4,8 +4,8 @@ import axios from "axios";
 import { AuthContext } from "../../context";
 
 export const SignUpButton = ({ registrationData, navigation }) => {
+  //const url = " http://192.168.0.147/users/registerUser";
   const url = "http://traidy-game.com/users/registerUser";
-
   const registrationPost = () => {
     if (registrationData.login.lenght === 0) {
       Alert.alert("Login mast have min 5 charters");
@@ -27,8 +27,10 @@ export const SignUpButton = ({ registrationData, navigation }) => {
         login: registrationData.login,
         password: registrationData.password,
         username: registrationData.username,
+        codeReg: registrationData.codeReg,
       })
       .then(({ data }) => {
+        console.log(data);
         if (data.success === 0) {
           navigation.navigate("Login");
         } else {
@@ -55,8 +57,8 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    width: "80%",
-    height: "20%",
+    minWidth: "80%",
+    minHeight: "5%",
     backgroundColor: "#0063E0",
     borderRadius: 5,
   },

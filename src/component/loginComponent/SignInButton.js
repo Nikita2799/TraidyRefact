@@ -1,18 +1,12 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  Alert,
-} from "react-native";
-import AsyncStorage from '@react-native-community/async-storage';
+import { StyleSheet, View, TouchableOpacity, Text, Alert } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 import axios from "axios";
 import { AuthContext } from "../../context";
 
 export const SignInButton = ({ loginData, navigation }) => {
+  //const url = " http://192.168.0.147/users/loginUser" ;
   const url = "http://traidy-game.com/users/loginUser";
-
   const { signIn } = React.useContext(AuthContext);
 
   const loginPost = () => {
@@ -31,11 +25,11 @@ export const SignInButton = ({ loginData, navigation }) => {
         login: loginData.login,
         password: loginData.password,
       })
-      .then(async ( data ) => {
+      .then(async (data) => {
         if (data.data.success === 0) {
-          console.log('sdasd');
           await AsyncStorage.setItem("trId", data.data.traidy_id);
           signIn();
+          console.log(data.data);
         } else {
           Alert.alert("Incorrect login or password ");
         }
@@ -60,8 +54,8 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    width: "80%",
-    height: "20%",
+    minWidth: "80%",
+    minHeight: "5%",
     backgroundColor: "#0063E0",
     borderRadius: 5,
   },

@@ -16,6 +16,7 @@ export const RegistrationScreen = ({ navigation }) => {
     login: "",
     password: "",
     username: "",
+    codeReg: "",
   });
 
   const onBackHandler = () => {

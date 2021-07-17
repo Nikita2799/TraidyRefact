@@ -29,6 +29,7 @@ export const LoginScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Registration")}>
           <Text style={styles.textSignUp}>Sign up</Text>
         </TouchableOpacity>
+        <Text style={styles.version}>Version 0.5</Text>
       </View>
     </ImageBackground>
   );
@@ -68,5 +69,9 @@ const styles = StyleSheet.create({
   },
   textSignUp: {
     color: "#0063E0",
+  },
+  version: {
+    color: "#9C9C9C",
+    marginLeft: 70,
   },
 });

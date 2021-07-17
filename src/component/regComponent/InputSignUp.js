@@ -33,6 +33,17 @@ export const InputsSingUp = ({ registrationData, setRegistrationData }) => {
     }
   };
 
+  const changeBetaCode = (e) => {
+    let event = e.nativeEvent.text;
+    if (event.match(/^\w+$/) || event == "") {
+      setRegistrationData((prev) => ({
+        ...prev,
+        codeReg: event,
+      }));
+    }
+    console.log(registrationData);
+  };
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.inputContainer}>
@@ -55,6 +66,12 @@ export const InputsSingUp = ({ registrationData, setRegistrationData }) => {
           value={registrationData.username}
           onChange={changeUsername}
         />
+        <Text style={styles.text}> Beta-code </Text>
+        <TextInput
+          style={styles.input}
+          value={registrationData.codeReg}
+          onChange={changeBetaCode}
+        />
       </View>
     </View>
   );
@@ -69,11 +86,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   input: {
-    width: "80%",
-    height: 35,
+    minWidth: "80%",
+    minHeight: 35,
     borderWidth: 0.5,
     borderColor: "#9C9C9C",
-    backgroundColor: "#243D61",
+    backgroundColor: "#003A94",
     borderRadius: 5,
     paddingStart: 20,
     color: "#FFFF",
